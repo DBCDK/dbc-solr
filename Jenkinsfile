@@ -40,7 +40,6 @@ pipeline {
                 script {
                     def allDockerFiles = findFiles glob: '**/Dockerfile'
                     def dockerFiles = allDockerFiles.findAll { f -> f.path.endsWith("src/main/docker/Dockerfile") }
-                    def version = readMavenPom().version
 
                     for (def f : dockerFiles) {
                         def dirName = f.path.take(f.path.length() - 27)
