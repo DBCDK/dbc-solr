@@ -40,6 +40,7 @@ pipeline {
                 script {
                     def allDockerFiles = findFiles glob: '**/Dockerfile'
                     def dockerFiles = allDockerFiles.findAll { f -> f.path.endsWith("src/main/docker/Dockerfile") }
+                    def version = readMavenPom().getVersion().replace("-SNAPSHOT", "")
 
                     for (def f : dockerFiles) {
                         def dirName = f.path.take(f.path.length() - 27)
@@ -49,7 +50,6 @@ pipeline {
 
                             modulePom = readMavenPom file: 'pom.xml'
                             def projectArtifactId = modulePom.getArtifactId()
-                            def version = modulePom.getVersion().replace("-SNAPSHOT", "")
                             def imageName = "${projectArtifactId}".toLowerCase()
 
                             if (! env.CHANGE_BRANCH) {
