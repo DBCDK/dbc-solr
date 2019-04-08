@@ -1,4 +1,4 @@
-def dockerRepository = 'https://docker.dbc.dk'
+def dockerRepository = 'https://docker-os.dbc.dk'
 
 pipeline {
     agent { label "devel8" }
