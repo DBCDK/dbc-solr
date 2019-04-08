@@ -1,5 +1,19 @@
 def dockerRepository = 'https://docker-os.dbc.dk'
 
+if (env.BRANCH_NAME == 'master') {
+    properties([
+        disableConcurrentBuilds(),
+        pipelineTriggers([
+            triggers: [
+                [
+                    $class: 'jenkins.triggers.ReverseBuildTrigger',
+                    upstreamProjects: "../dbc-solr-base/master", threshold: hudson.model.Result.SUCCESS
+                ]
+    	    ]
+        ]),
+    ])
+}
+
 pipeline {
     agent { label "devel8" }
     tools {
