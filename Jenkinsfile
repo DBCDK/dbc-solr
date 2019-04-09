@@ -7,7 +7,7 @@ if (env.BRANCH_NAME == 'master') {
             triggers: [
                 [
                     $class: 'jenkins.triggers.ReverseBuildTrigger',
-                    upstreamProjects: "../dbc-solr-base/master", threshold: hudson.model.Result.SUCCESS
+                    upstreamProjects: "../dbc-solr-base/job/master", threshold: hudson.model.Result.SUCCESS
                 ]
     	    ]
         ]),
