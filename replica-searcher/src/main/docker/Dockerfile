@@ -1,4 +1,4 @@
-FROM docker.dbc.dk/dbc-solr8-base:latest
+FROM docker.dbc.dk/dbc-solr8-base:8-5-1-pre
 
 USER root
 RUN echo 'export JAVA_OPTS="$JAVA_OPTS -DdbcSearchHandler=dk.dbc.solr.module.searcher.ReplicaSearcher"' > /docker-entrypoint-confd.d/50-enable-dbc-replica-searcher.env
