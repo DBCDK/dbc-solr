@@ -53,11 +53,11 @@ pipeline {
             steps {
                 script {
                     def allDockerFiles = findFiles glob: '**/Dockerfile'
-                    def dockerFiles = allDockerFiles.findAll { f -> f.path.endsWith("src/main/docker/Dockerfile") }
+                    def dockerFiles = allDockerFiles.findAll { f -> f.path.endsWith("target/docker/Dockerfile") }
                     def version = readMavenPom().getVersion().replace("-SNAPSHOT", "")
 
                     for (def f : dockerFiles) {
-                        def dirName = f.path.take(f.path.length() - 27)
+                        def dirName = f.path.take(f.path.length() - "target/docker/Dockerfile".length())
                         echo "We are looking to run in: $dirName"
 
                         dir(dirName) {
