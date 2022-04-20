@@ -92,6 +92,14 @@ pipeline {
                                         app.push "latest"
                                     }
                                 }
+                                // TODO: Removed when doing DI-389
+                                docker.withRegistry("https://docker.dbc.dk", 'docker') {
+                                    app.push()
+                                    if (env.BRANCH_NAME ==~ /master|trunk/) {
+                                        app.push "latest"
+                                        app.push version
+                                    }
+                                }
                             }
                         }
                     }
